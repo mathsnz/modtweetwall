@@ -1,0 +1,204 @@
+<html>
+<head>
+  <meta charset="ISO-8859-1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mod Tweet Wall - free twitter Wall with moderation features</title>
+  <link rel="apple-touch-icon" sizes="57x57" href="./favicons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="./favicons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="./favicons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="./favicons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="./favicons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="./favicons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="./favicons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="./favicons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="./favicons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="./favicons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="./favicons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./favicons/favicon-16x16.png">
+  <link rel="manifest" href="./favicons/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="./favicons/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="Description" content="Mod Tweet Wall is a free twitter wall with moderation features to easily choose the tweets you want (and don't want)... get started today." />
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
+	<script src="./jquery.js"></script>
+  <style>
+    body, input, button{
+      font-family:'Open Sans';
+      color:#fff;
+      //background-color: #ccc;
+      padding:0px;
+      margin:0px;
+      font-size:18px;
+      margin-top: 40px;
+      //background-image: url('./starburst.jpg');
+      background-attachment: fixed;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: bottom right;
+    }
+    #links {
+      float:right;
+      position: relative;
+      top:3px;
+      white-space: nowrap;
+    }
+    content {
+      max-width: 980px;
+      width:calc(100%-40px);
+      margin-left: auto;
+      margin-right: auto;
+      display:block;
+      padding:20px;
+      text-align: center;
+      color: #334;
+      //box-shadow: 0px 1px 5px rgba(0,0,0,0.5);
+    }
+    .title {
+        font-size: 25px;
+        font-weight: 600;
+    }
+    img.screenshot {
+      width:90%;
+      margin-top:10px;
+      margin-bottom:10px;
+      box-shadow: 0px 1px 5px rgba(0,0,0,0.5);
+    }
+    a {
+      color: #334;
+    }
+    top {
+      background-color: #630;
+      position: fixed;
+      top: 0px;
+      left: 0px;
+      right: 0px;
+      height: 20px;
+      padding: 10px;
+      z-index: 20;
+      padding-top: 4px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #223;
+      box-shadow: 0px 1px 5px rgba(0,0,0,0.5);
+      color: #fff;
+      text-align: left;
+    }
+    top a {
+      color:#fff;
+      text-decoration: none;
+    }
+    #linksbutton, #nav2 {display:none;}
+    @media all and (max-width:660px){
+	#links {
+		display:none;
+	}
+	#linksbutton{
+		position:absolute;
+		top:5px;
+		right:5px;
+		display:block;
+	}
+#nav2 {
+    position: fixed;
+    right: 10px;
+    top: 30px;
+    bottom: auto;
+    left: auto;
+    color: #000;
+    width: auto;
+    background: #fff;
+    text-align: left;
+    padding: 3px;
+    box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+    padding:10px;
+    display:none;
+}
+#nav2 a {
+	color:#000;
+	display:block;
+	padding-bottom:5px;
+}
+	.callout {
+		position: relative;
+		margin: 18px 0;
+		padding: 18px 20px;
+		background-color: #fff;
+	}
+	.callout .notch {
+		position: absolute;
+		top: -10px;
+		right: 8px;
+		margin: 0;
+		border-top: 0;
+		border-left: 10px solid transparent;
+		border-right: 10px solid transparent;
+		border-bottom: 10px solid #fff;
+		padding: 0;
+		width: 0;
+		height: 0;
+		/* ie6 height fix */
+		font-size: 0;
+		line-height: 0;
+		 /* ie6 transparent fix */
+		_border-right-color: pink;
+		_border-left-color: pink;
+		_filter: chroma(color=pink);
+	}
+	.border-callout { border: 1px solid #c5d9e8; padding: 17px 19px; }
+	.border-callout .border-notch { border-bottom-color: #c5d9e8; top: -11px; }
+    }
+  </style>
+</head>
+<body>
+  <top>
+    <img src="logosmall.png" style="height:24px;padding-left:5px;position:relative;top:5px;"> Mod Tweet Wall
+	<span id=links>
+      <a href='./'><b>home</b></a>
+	</span>
+	<span id=linksbutton onclick="$('#nav2').toggle()"><img src='./menu.png'></span>
+	<div id=nav2 class="callout border-callout">
+     <a href='./'><b>home</b></a>
+    <b class="border-notch notch"></b>
+    <b class="notch"></b>
+	</div>
+  </top>
+  <content>
+    <img src='logosideways.png' style='height:70px;max-width:90%'><br>
+    <img src='toppicture.png' style='max-width:90%'><br>
+    <br>
+    <span class=title style='color:#f00;'>Note: due to Twitter's API changes this service no longer works</span><br>
+    If you want custom work done for your event, get in touch.<br>
+    <br>
+    <span class=title>Free tweet wall with moderation features</span><br>
+    <br>
+    Have you ever wanted a tweet wall at your event, but been worried that inappropriate comments will come up? Now there is a solution... Mod Tweet Wall.
+    Only the tweets that you approve will appear on the tweet wall, meaning you have full control and no inappropriate comments can show up on your live display.<br>
+    <br>
+    <a href='./moderation.php'>Get started today</a><br>
+	<br>
+	<b>As used by Criss Angel at his show Mindfreak at Planet Hollywood</b><br>
+    <br>
+    Search for tweets and add them to the approved list, or mark them as not approved:<br>
+    <br>
+    <img src='moderation.png' class=screenshot><br>
+    <br>
+    You can then display your approved tweets on a rotating wall either as a single tweet:<br>
+    <br>
+    <img src='singlewall.png' class=screenshot><br>
+    <br>
+    Or two rows of scrolling tweets:<br>
+    <br>
+    <img src='multiwall.png' class=screenshot><br>
+    <br>
+    So what are you waiting for? <a href='./moderation.php'>Get started today</a>.<br>
+	(You'll need a twitter account)<br>
+    <br>
+    <small>
+      &copy; Jake Wills 2020<br>
+      <a href='./privacy.htm'>Privacy Policy</a>
+      <a href='./tos.htm'>Terms of Service</a>
+    </small>
+  </content>
+</body>
+</html>
